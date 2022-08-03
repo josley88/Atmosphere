@@ -337,7 +337,10 @@ let granimInstance = new Granim({
 
 setInterval(refreshTheme, 2000)
 function refreshTheme() {
-    if (period.innerHTML != null) {updateTheme(icon.innerHTML, period.innerHTML)}
+    if (period.innerHTML != null) {
+        updateTheme(icon.innerHTML, period.innerHTML);
+        // console.log(icon.innerHTML, period.innerHTML);
+    }
 }
 
 // JQuery update immediately on force env dropdown update

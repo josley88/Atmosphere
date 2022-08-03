@@ -10,6 +10,7 @@ Uses refreshRate to determine when to stop.
 */
 
 export function updateTime(localdate) {
+    console.log("HELLO");
     var updateTimer = 0;
     
     var quit = setInterval(function(){
@@ -26,6 +27,7 @@ export function updateTime(localdate) {
         var currentMinute = localdate.getMinutes();
         var updatedMinute = "";
         
+
         if(currentMinute < 10) { // add a 0 if minutes are single digit
             updatedMinute = "0" + String(currentMinute);
             
@@ -68,6 +70,7 @@ Assigns time-period value to morning, afternoon, evening, and night
 
 export function getSunStat (latitude, longitude) {
     
+
     var curr_time = document.getElementById("time-desc").innerHTML;
     var curr_hour = parseInt(curr_time.split(':')[0]);
     var curr_min = parseInt(curr_time.split(':')[1].split(' ')[0]);
@@ -75,6 +78,8 @@ export function getSunStat (latitude, longitude) {
     
     var call = 'https://api.sunrise-sunset.org/json?lat=' + String(latitude) + 
         '&lng=' + String(longitude) + '&formatted=0';
+
+    console.log(call);
 
     var get_data = new XMLHttpRequest();
     get_data.open("GET", call);
@@ -137,11 +142,13 @@ Constantly refreshes to keep the time up to date
 */
 
 export function getTime (latitude, longitude) {
-    // console.log("Sending API request for lat: " + String(latitude) + ", and long: " + String(longitude));
+    
+    
+    console.log("Sending API request for lat: " + String(latitude) + ", and long: " + String(longitude));
     var targetDate = new Date();
     var timestamp = targetDate.getTime()/1000 + targetDate.getTimezoneOffset() * 60;
     var call = 'https://maps.googleapis.com/maps/api/timezone/json?location=' + String(latitude) + '%2C' + 
-        String(longitude) + '&timestamp=' + String(timestamp) + '&key=AIzaSyDTnLz2-EMVgX7EnTxFtpzIpxnJj8Ypbos'; // api call
+        String(longitude) + '&timestamp=' + String(timestamp) + '&key=AIzaSyAPpLrAadNQo_7G5Yy3y6806ZC1nm6JR6w'; // api call
 
     var get_data = new XMLHttpRequest();
     get_data.open("GET", call);

@@ -52,8 +52,8 @@ dev mode will stop the automatic runs and updates of data
 
 var dev_mode = false;
 
-if (!dev_mode) {
 
+if (!dev_mode) {
 
     geo_time.getLocation();
 
