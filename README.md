@@ -1,8 +1,5 @@
-![Logo](https://github.tamu.edu/Joseph-shumway/CSCE-315-Atmosphere/blob/master/Assets/Atmosphere.png?raw=true)
+![Logo](https://github.com/josley88/Atmosphere/blob/main/Assets/Atmosphere.png?raw=true)
 
-#### FOR TA's: Here is our test login info for you to test the website. Due to Spotify API limitations, there is a whitelist of spotify accounts that are allowed to use the app unless it is approved to go public by the spotify team:
-Username: twevtwev21@gmail.com
-Password: Aggie2023
 
 If you would like to use your own spotify premium account, please reach out to joseph.shumway@gmail.com to add your spotify email to the whitelist.
 
