@@ -1,0 +1,989 @@
+html {
+    --primary-color:#587da2;
+    --primary-accent-color: #276e91;
+
+    --m-front: #283e54;
+    --m-back: #276e91;
+
+    --secondary-accent-color: #11445d;
+    --primary-font-color: whitesmoke;
+    --secondary-font-color: whitesmoke;
+    --playback-color: whitesmoke;
+    --flash-length: 100000s;
+    --rain-opacity: 0;
+    --snow-opacity: 0;
+
+    --posX: 10vw;
+    --posY: 10vh;
+    --posX2: 10vw;
+    --posY2: 0vh;
+
+    overflow-y: hidden;
+}
+
+$progress-bar-background-color: var(--primary-color);
+$progress-value-background-color: var(--primary-accent-color);
+$button-text-color: whitesmoke;
+
+@import "../../node_modules/bulma/bulma.sass";
+@import "../../node_modules/bulma-extensions/bulma-divider/dist/css/bulma-divider.sass";
+@import "../../node_modules/bulma-extensions/bulma-switch/src/sass/index.sass";
+
+.material-icons-outlined {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;  /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+  
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+  
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+  
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+    color: var(--primary-font-color);
+}
+
+body {
+    min-height: 100vh;
+    overflow: hidden;
+    color: whitesmoke;
+    font-size: larger;
+
+    // LIGHTNING
+    filter: brightness(1);
+    z-index: -1;
+    animation: flash ease-out var(--flash-length) infinite;
+    
+    @keyframes flash {
+        from { filter: brightness(1);} 
+        92% { filter: brightness(1);}
+        93% { filter: brightness(2.5);}
+        94% { filter: brightness(1.5);}
+        96% { filter: brightness(2);} 
+        to { filter: brightness(1);}
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                 BACKGROUND                                 */
+/* -------------------------------------------------------------------------- */
+
+canvas {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+// mountains
+.mountain {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+}
+
+svg.back {
+    width: 3010px;
+    position: absolute;
+    bottom: 0px;
+    fill: var(--m-back);
+    margin-bottom: -5vh;
+}
+
+svg.front {
+    width: 3010px;
+    position: absolute;
+    bottom: 0px;
+    fill: var(--m-front);
+    margin-bottom: -5vh;
+}
+
+
+
+
+
+/* -------------------------------------------------------------------------- */
+/*                                LOGIN OVERLAY                               */
+/* -------------------------------------------------------------------------- */
+
+.login-overlay {
+    position: fixed;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(rgb(45, 72, 94) 30%, rgb(17, 29, 37));
+    z-index: 2;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    .text-overlay {
+        position: flex;
+        font-size: 20px;
+        color: white;
+        margin-bottom: 20px;
+    }
+
+    .divider {
+        width: 40vw;
+        min-width: 800px;
+        height: 2px;
+        background-color: rgba($color: #FFF, $alpha: 0.5);
+        margin: 5vh;
+    }
+       
+    .spotify-logo {
+        width: 7vw;
+        user-select: none;
+        pointer-events: none;
+        -webkit-user-drag: none;
+    }
+    
+    .spotify-button {
+        position: flex;
+        background-color: rgb(105, 153, 94) !important;
+        height: 7vh;
+        width: 14vw;
+        border-width: 0;
+        margin-right: 1vw;
+        align-items: center;
+        justify-content: center;
+    
+        a {
+            padding-top: 4px !important;
+            padding-left: 50px;
+            padding-right: 45px;
+        }
+    }
+
+    .spotify-button:hover {
+        background-color: rgb(65, 117, 54) !important;
+    }
+
+    .login-button-cont {
+        display: flex; 
+        flex-direction: row; 
+        margin-top: 10vh; 
+        align-items: center;
+    }
+
+    .no-music {
+        height: 7vh;
+        width: 14vw;
+        margin-left: 1vw;
+        background-color: #226987;
+        font-size: large;
+    }
+
+    .no-music:hover {
+        background-color: #195870;
+        color: white !important;
+    }
+}
+
+
+
+/* -------------------------------------------------------------------------- */
+/*                                    MISC                                    */
+/* -------------------------------------------------------------------------- */
+
+.hero {background-color: rgba($color: #000000, $alpha: 0) !important;}
+.logo {fill: rgba($color: #FFFFFF, $alpha: .85);}
+.topBar {
+    background-color: rgba($color: #000000, $alpha: 0);
+    height: 75px;
+    display: flex; 
+    justify-content: space-between;
+}
+.logo-margins {margin-left: 20px;}
+.fcentered {align-items: center;}
+.flex-container {display: flex;}
+.fuzzy-shadow {box-shadow: 0px 5px 15px   rgba($color: #000000, $alpha: .3);}
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+.flex-container-stretch {
+    display: flex;
+    align-items: stretch;
+}
+.flex-item {
+    margin-right: 20px;
+    margin-bottom: 15px;
+}
+.button {
+    background-color: rgba($color: #FFFFFF, $alpha: 0);
+    border-width: 0ch;
+    color: whitesmoke;
+    transition: background-color .2s, color .2s;
+}
+.button:hover {
+    background-color: rgba($color: #FFFFFF, $alpha: .10);
+    color: var(--secondary-accent-color);
+}
+h2 {
+    color: var(--primary-font-color);
+    font-size: x-large;
+    font-weight: 600;
+    user-select: none;
+}
+.album-info {
+    margin-left: 3vw;
+    h2 {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: clip;
+        width: 30vw;
+    }
+    
+}
+.top-text {
+    color: whitesmoke;
+    font-size: large;
+    user-select: none;
+}
+.top-text1 {
+    margin-top: 10px;
+    color: whitesmoke;
+    font-size: large;
+    user-select: none;
+}
+.error-box {
+    text-align: center;
+}
+.error {
+    position: absolute;
+    left: 30vw;
+    text-align: center;
+    color: red;
+    bottom: 13vh;
+}
+.album-maintext {
+    color: var(--primary-font-color) !important;
+    font-size: x-large;
+    user-select: none;
+}
+.album-subtext {
+    color: var(--secondary-font-color) !important;
+    font-size: large;
+    user-select: none;
+}
+.margin90w {
+    margin-left: 5vw;
+    margin-right: 5vw;
+}
+.margin90h {
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+}
+#controls {
+    display: flex;
+}
+#weather-desc {
+    text-transform: capitalize;
+}
+.rnd {
+    border-radius: 1vmin;
+}
+.scrollpane {
+    width:90%;
+    height: 90%;
+    overflow-y: auto;
+    margin: 5%;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                PLAYBACK BAR                                */
+/* -------------------------------------------------------------------------- */
+
+.playbackControls {
+	background-color: var(--primary-color);
+	width: 95%;
+    height: 7vh;
+    max-height: 100px;
+    position: absolute;
+    left: 2.5%;
+    bottom: 2.5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    h3.left {
+        margin-right: 20px;
+        margin-left: 50px;
+        user-select: none;
+        color: var(--primary-font-color);
+    }
+    h3.right {
+        margin-right: 50px;
+        margin-left: 20px;
+        user-select: none;
+        color: var(--primary-font-color);
+    }
+	span.clickable {
+		font-weight: 300;
+		font-size: 5vh;
+        color: var(--playback-color);
+        cursor: pointer;
+        user-select: none;
+        text-shadow: 2px 2px 2px var(--secondary-accent-color);
+        transition: .1s;
+        &:hover {color:   var(--secondary-accent-color);}
+	}
+
+    #progress {
+        padding: 5px;
+        width: 65vw;
+        display: flex;
+    }
+    progress {
+        align-self: center;
+        margin-bottom: 0px !important; 
+    }
+    progress::-webkit-progress-value {
+        background-color:   var(--primary-accent-color);
+        transition: width .2s linear;
+    }
+    progress::-webkit-progress-bar {
+        background-color:   var(--secondary-accent-color);
+    }
+}
+
+#volume-container {
+    display: flex;
+    width: 20vw;
+    height: fit-content;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 10px;
+
+    span {
+        user-select: none;
+    }
+
+    #volume {
+        display: flex;
+        position: relative;
+        height: 1vh;
+        width: 15vw;
+        background: var(--secondary-accent-color);
+        border-radius: 15px;
+        flex-direction: row;
+        align-items: center;
+        margin-left: 15px;
+        margin-right: 15px;
+        
+        .ui-slider-range-min {
+            height: 1vh;
+            width: 20vw;
+            position: absolute;
+            background: var(--primary-accent-color);
+            border: none;
+            border-radius: 10px;
+            outline: none;
+        }
+        
+        .ui-slider-handle {
+            width: 20px;
+            height: 20px;
+            border-radius: 7px;
+            background: whitesmoke;
+            position: absolute;
+            margin-left: -8px;
+            cursor: pointer;
+            outline: none;
+            transition: none !important;
+        }
+    }
+}
+
+
+
+/* -------------------------------------------------------------------------- */
+/*                                  PLAYLIST                                  */
+/* -------------------------------------------------------------------------- */
+
+.playlist {
+    position: absolute;
+    height: 60vh;
+    width: 25vw;
+    right: 2.5%;
+    bottom: 30vh;
+    transition: opacity .2s;
+    opacity: 0;
+    align-items: center;
+    color: var(--primary-font-color);
+    background-image: linear-gradient(var(--primary-color) 30%, rgba(0,0,0,0) 95%);
+}
+
+.playlist.show {
+    opacity: 1;
+}
+
+.pitem {
+    background-color: rgba($color: #000000, $alpha: 0);
+    border-radius: 5px;
+    margin: 10px;
+
+    .p-artist {
+        color: var(--secondary-font-color) !important;
+        font-size: medium;
+    }
+
+    .p-title {
+        font-size: medium;
+        white-space: nowrap;
+        width:min-content;
+    }
+}
+
+
+
+/* -------------------------------------------------------------------------- */
+/*                               MAIN ALBUM ART                               */
+/* -------------------------------------------------------------------------- */
+
+.album-art-large {
+
+    padding: 15px;
+
+    img {
+        display: flex;
+        position: relative;
+        float: center;
+        margin: auto;
+        border-radius: 30px;
+        background: rgb(222, 222, 222);
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+        
+    }
+}
+
+.album-art {
+    display: block;
+    margin-right: 1.5vw;
+    width: 64px;
+    height: 64px;
+    min-width: 64px;
+    img {
+        border-radius: 6px;
+    }
+}
+
+
+
+/* -------------------------------------------------------------------------- */
+/*                                  SETTINGS                                  */
+/* -------------------------------------------------------------------------- */
+
+.settings {
+    padding: 10px;
+    position: absolute;
+    display: flex;
+    top: 10vh;
+    right: 2.5%;
+    transform: translateX(550px);
+    transition: transform .5s;
+
+    p.title {
+        align-self: center;
+        margin: 0;
+    }
+
+    .box {
+        width: 100%;
+        background-color: var(--secondary-accent-color);
+    }
+
+    p {
+        color: var(--primary-font-color) !important;
+    }
+
+    label {
+        color: var(--primary-font-color) !important;
+    }
+
+    .control {
+        color: var(--secondary-accent-color) !important;
+    }
+
+    select {
+        color: var(--primary-font-color) !important;
+        background-color: var(--primary-color);
+        border-width: 0;
+        width: 15vw;
+    }
+}
+
+.settings.show {
+    transform: translateX(0);
+}
+
+
+
+/* -------------------------------------------------------------------------- */
+/*                              TUTORIAL SECTION                              */
+/* -------------------------------------------------------------------------- */
+
+.t-box {
+    display: none;
+    flex-direction: row;
+    background-color: whitesmoke;
+    color: var(--primary-accent-color);
+    position: absolute;
+    height: 12vh;
+    width: 50vh;
+    border-radius: 1vh;
+    align-items: center;
+    justify-content:space-evenly;
+    padding: 1vh;
+    top: 0;
+    left: 0;
+    transform: translateX(calc(var(--posX) - 25vh)) translateY(calc(var(--posY)));
+    z-index: 3;
+    user-select: none;
+    transition: transform .3s;
+
+    p {
+        text-align: center;
+        z-index: 1;
+    }
+
+    h6 {
+        font-size: small;
+        color: #BBBBBB;
+        text-align: center;
+        margin-top: 1vh;
+        overflow-wrap: normal;
+        font-size: medium;
+        white-space: nowrap;
+    }
+}
+
+.t-element.show {
+    opacity: 1;
+}
+
+.focus {
+    box-shadow: 0 0 0 max(200vh, 200vw) rgba(0, 0, 0, .4) !important;
+    border-color: whitesmoke !important;
+    border-radius: 10px !important;
+    border-width: 1px !important;
+    border-style: solid !important;
+    z-index: 2;
+}
+
+#weatherBox.focus {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    box-shadow: 0 0 0 max(200vh, 200vw) rgba(0, 0, 0, 0);
+    transition: box-shadow .5s;
+}
+
+.playlist-container.focus {
+    box-shadow: 0 0 0 max(200vh, 200vw) rgba(0, 0, 0, .4) !important;
+    border-color: whitesmoke !important;
+    border-radius: 10px !important;
+    border-width: 0px !important;
+    border-style: solid !important;
+    z-index: 2;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                ABOUT SECTION                               */
+/* -------------------------------------------------------------------------- */
+
+#about {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    bottom: 0vh;
+    left: 0vw;
+    border-radius: 1vh;
+    backdrop-filter: blur(2px);
+    
+    // background-color: var(--secondary-accent-color);
+
+    .box {
+        width: min-content;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-direction: column;
+        background-color: var(--primary-color);
+        padding: 5vh;
+        transition: transform .2s, opacity .2s;
+        box-shadow: 0 0 0 max(200vh, 200vw) rgba(0, 0, 0, .4) !important;
+
+        .columns {
+            margin-top: 3vh;
+            height: 45.5vh;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            
+            border-radius: 1vh;
+
+            .column {
+                height: 40vh;
+                margin: 1vh;
+
+                .card {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    height: 41vh;
+                    width: 15vw;
+                    // padding: 1vw;
+                    border-radius: 1vh;
+                    background-color: whitesmoke;
+
+                    .card-image {
+                        height: 15vw;
+                        width: 15vw; 
+
+                        figure {
+                            img {
+                                border-top-left-radius: 1vh !important;
+                                border-top-right-radius: 1vh !important;
+                            }
+                        }
+                    }
+
+                    .card-content {
+                        display: flex;
+                        flex-direction: column;
+                        height: 20vh;
+
+                        .media {
+                            .media-content {
+                                .title {
+                                    font-size: 1rem;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .is-divider {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .about-p {
+            color: var(--primary-font-color);
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            text-align: center;
+            border-radius: 1vh;
+            width: 52vw;
+            font-weight: 100;
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+    }
+
+    .box.hide {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+
+#about.hide {
+    backdrop-filter: blur(0px);
+    pointer-events: none;
+}
+
+
+/* -------------------------------------------------------------------------- */
+/*                                    MISC                                    */
+/* -------------------------------------------------------------------------- */
+
+::-webkit-scrollbar {
+    // Width of vertical scroll bar
+    width: 0px;
+    // Height of horizontal scroll bar
+    height: 0px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color:   var(--primary-accent-color);
+}
+
+::-webkit-scrollbar-track-piece {
+    border-radius: 8px;
+    background-color:   var(--secondary-accent-color);
+}
+
+* {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.fade {
+    overflow:scroll;
+    -webkit-mask-image: -webkit-gradient(linear, left 50%, left bottom, from(rgba(255,0,0,1)), to(rgba(0,0,0,0)));
+}
+
+
+.fadeOut {
+    opacity: 0; }
+.fadeIn { 
+    opacity: 1; 
+}
+
+
+/* -------------------------------------------------------------------------- */
+/*                                    RAIN                                    */
+/* -------------------------------------------------------------------------- */
+hr {
+    width: 55px;
+    position: absolute;
+    bottom: 98%;
+    animation-name: rain;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    background-color: rgba(133, 155, 172, var(--rain-opacity));
+}
+
+@keyframes rain {
+    from {
+        transform: rotate(105deg) translateX(0);
+    } 
+    to {
+        transform: rotate(105deg) translateX(calc(100vh + 20px));
+    }
+}
+
+
+/* -------------------------------------------------------------------------- */
+/*                                    SNOW                                    */
+/* -------------------------------------------------------------------------- */
+div.snow0 {
+    position: absolute;
+    bottom: 100%;
+    animation-name: snow0;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    background-color: rgba(255, 255, 255, var(--snow-opacity));
+}
+div.snow0-2 {
+    position: absolute;
+    bottom: 100%;
+    animation-name: snow0;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    background-color: rgba(255, 255, 255, var(--snow-opacity));
+}
+div.snow1 {
+    position: absolute;
+    bottom: 100%;
+    animation-name: snow1;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    background-color: rgba(255, 255, 255, var(--snow-opacity));
+}
+div.snow1-2 {
+    position: absolute;
+    bottom: 100%;
+    animation-name: snow1-2;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    background-color: rgba(255, 255, 255, var(--snow-opacity));
+}
+div.snow2 {
+    position: absolute;
+    bottom: 100%;
+    animation-name: snow2;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    background-color: rgba(255, 255, 255, var(--snow-opacity));
+}
+div.snow2-2 {
+    position: absolute;
+    bottom: 100%;
+    animation-name: snow2-2;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    background-color: rgba(255, 255, 255, var(--snow-opacity));
+}
+
+
+@keyframes snow0 {
+    from {
+        transform: rotate(87deg) translateX(0);
+    } 
+    to {
+        transform: rotate(90deg) translateX(calc(100vw + 20px));
+    }
+}
+@keyframes snow0-2 {
+    from {
+        transform: rotate(95deg) translateX(0);
+    } 
+    to {
+        transform: rotate(85deg) translateX(calc(100vw + 20px));
+    }
+}
+@keyframes snow1 {
+    from {
+        transform: rotate(87deg) translateX(0);
+    } 
+    to {
+        transform: rotate(94deg) translateX(calc(100vw + 20px));
+    }
+}
+@keyframes snow1-2 {
+    from {
+        transform: rotate(96deg) translateX(0);
+    } 
+    to {
+        transform: rotate(87deg) translateX(calc(100vw + 20px));
+    }
+}
+@keyframes snow2 {
+    from {
+        transform: rotate(94deg) translateX(0);
+    } 
+    to {
+        transform: rotate(115deg) translateX(calc(100vw + 20px));
+    }
+}
+@keyframes snow2-2 {
+    from {
+        transform: rotate(100deg) translateX(0);
+    } 
+    to {
+        transform: rotate(94deg) translateX(calc(100vw + 20px));
+    }
+}
+
+
+
+
+
+/* -------------------------------------------------------------------------- */
+/*                                    STARS                                   */
+/* -------------------------------------------------------------------------- */
+// credits
+// stars were created then heavily modified from a code snippet from https://dev.to/sobhandash/lets-build-a-night-sky-using-pure-scss-2g0n
+$starOneScrollDuration: 310s;
+$starTwoScrollDuration: 300s;
+$starThreeScrollDuration: 320s;
+$numStarOneStars: 1700;
+$numStarTwoStars: 700;
+$numStarThreeStars: 200;
+
+$size: 2560;
+
+@function create-stars($n) {
+    $stars: "#{random($size * 2)}px #{random($size * 2)}px #FFF";
+  
+    @for $i from 2 through $n {
+      $stars: "#{$stars} , #{random($size * 2)}px #{random($size * 2)}px #FFF";
+    }
+    @return unquote($stars);
+  }
+
+@keyframes animStar {
+    from {
+        transform: rotate(0deg) translate(-($size + 0px));
+    }
+    to {
+        transform: rotate(360deg) translate(-($size + 0px));
+    }
+}
+@keyframes animStar2 {
+    from {
+        transform: rotate(180deg) translate(-($size + 0px));
+    }
+    to {
+        transform: rotate(540deg) translate(-($size + 0px));
+    }
+}
+
+@mixin star-template($numStars, $starSize, $scrollSpeed) {
+    position: absolute;
+    left: 50%;
+    bottom: 0%;
+    width: $starSize;
+    height: $starSize;
+    border-radius: 50%;
+    background: transparent;
+    box-shadow: create-stars($numStars);
+    
+    animation: animStar $scrollSpeed linear infinite;
+    &:after {
+        content: " ";
+        //   top: -$starStartOffset;
+        width: $starSize;
+        height: $starSize;
+        border-radius: 50%;
+        background: transparent;
+        box-shadow: create-stars($numStars);
+    }
+}
+@mixin star-template2($numStars, $starSize, $scrollSpeed) {
+    position: absolute;
+    left: 50%;
+    bottom: 0%;
+    width: $starSize;
+    height: $starSize;
+    border-radius: 50%;
+    background: transparent;
+    box-shadow: create-stars($numStars);
+
+    animation: animStar2 $scrollSpeed linear infinite;
+    &:after {
+        content: " ";
+    //   top: -$starStartOffset;
+        width: $starSize;
+        height: $starSize;
+        border-radius: 50%;
+        background: transparent;
+        box-shadow: create-stars($numStars);
+    }
+}
+
+.stars1 {
+    @include star-template($numStarOneStars, 1px, $starOneScrollDuration);
+}
+.stars2 {
+    @include star-template($numStarTwoStars, 2px, $starTwoScrollDuration);
+}
+.stars3 {
+    @include star-template($numStarThreeStars, 3px, $starThreeScrollDuration);
+}
+.stars4 {
+    @include star-template2($numStarOneStars, 1px, $starOneScrollDuration);
+}
+.stars5 {
+    @include star-template2($numStarTwoStars, 2px, $starTwoScrollDuration);
+}
+.stars6 {
+    @include star-template2($numStarThreeStars, 3px, $starThreeScrollDuration);
+}

@@ -1,0 +1,37 @@
+{
+  "name": "csce-315-atmosphere",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/app.js",
+  "scripts": {
+    "start": " npm-run-all --parallel compile-css start-app",
+    "compile-css": "sass src/scss/styles.scss public/css/styles.css",
+    "start-app": "cross-env NODE_ENV=prod node src/app.js",
+    "dev": "cross-env NODE_ENV=dev npm-run-all --parallel watch scss",
+    "watch": "nodemon app.js --ext *, ejs --ignore public",
+    "scss": "sass --watch src/scss/styles.scss public/css/styles.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.tamu.edu/Joseph-shumway/CSCE-315-Atmosphere.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bulma": "^0.9.3",
+    "bulma-extensions": "^6.2.7",
+    "connect-livereload": "^0.6.1",
+    "cross-env": "^7.0.3",
+    "ejs": "^3.1.6",
+    "express": "^4.17.3",
+    "granim": "^2.0.0",
+    "jquery": "^3.6.0",
+    "livereload": "^0.9.3",
+    "nodemon": "^2.0.15",
+    "npm-run-all": "^4.1.0",
+    "sass": "^1.49.11",
+    "serve-favicon": "^2.5.0",
+    "spotify-web-api-node": "^5.0.2",
+    "xmlhttprequest": "^1.8.0"
+  }
+}
