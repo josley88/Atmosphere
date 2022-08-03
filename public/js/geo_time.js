@@ -10,7 +10,7 @@ Uses refreshRate to determine when to stop.
 */
 
 export function updateTime(localdate) {
-    console.log("HELLO");
+    // console.log("HELLO");
     var updateTimer = 0;
     
     var quit = setInterval(function(){
